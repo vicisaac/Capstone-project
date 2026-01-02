@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets
 from rest_framework import generics
 from .models import Menu, Booking
@@ -28,5 +29,6 @@ class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
     lookup_field = 'id'  # Specify that the lookup is by 'id'
 
 class BookingViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]  # Restrict access to authenticated users only
     queryset = Booking.objects.all()  # Queryset to retrieve all bookings
     serializer_class = BookingSerializer  # Serializer to use for Booking model

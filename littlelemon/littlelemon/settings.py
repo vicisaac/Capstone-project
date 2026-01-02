@@ -37,8 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'restaurant',
+    
     'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',    
+    
+    'restaurant', 
 ]
 
 MIDDLEWARE = [
@@ -112,6 +116,20 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # Token-based authentication
+        'rest_framework.authentication.SessionAuthentication',  # Session-based authentication
+    ],
+    
+}
+
+DJOSER = {
+    "USER_ID_FIELD": "username",  # Use 'username' as the identifier for the user
+}
+
+
 
 
 # Internationalization

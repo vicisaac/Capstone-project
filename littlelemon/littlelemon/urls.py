@@ -20,8 +20,8 @@ from rest_framework import routers
 from restaurant import views
 
 # Initialize the DefaultRouter for User API
-router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet, basename='user')
+#router = routers.DefaultRouter()
+#router.register(r'users', views.UserViewSet, basename='user')
 
 # Create a separate router for restaurant-related endpoints (like the tables API)
 restaurant_router = routers.DefaultRouter()
@@ -37,5 +37,10 @@ urlpatterns = [
     path('restaurant/booking/', include(restaurant_router.urls)),  # Tables API under 'restaurant/'
     
     # Include User-related API under 'api-auth/'
-    path('api-auth/', include(router.urls)),  # Users API under 'api-auth/'
+    #path('api-auth/', include(router.urls)),  # Users API under 'api-auth/'
+    
+    # Include Djoser endpoints for user authentication
+    path('auth/', include('djoser.urls')),  # This provides user registration and other related endpoints
+    path('auth/', include('djoser.urls.authtoken')),  # This provides token-based authentication
+
 ]

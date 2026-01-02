@@ -3,16 +3,19 @@ from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework import generics
 from .models import Menu, Booking
-from .serializers import UserSerializer, MenuSerializer, BookingSerializer
+from .serializers import MenuSerializer, BookingSerializer
+#from .serializers import UserSerializer
 
 # Create your views here.
 def index(request):
     return render(request, 'index.html', {})
 
 # UserViewSet handles CRUD operations for the User model
-class UserViewSet(viewsets.ModelViewSet):
+'''class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()  # Queryset to retrieve all users
     serializer_class = UserSerializer  # Serializer to use for User model
+    # this is removed as we are using djoser for user management
+'''
     
 # MenuViewSet handles CRUD operations for the Menu model
 class MenuItemView(generics.ListCreateAPIView):
